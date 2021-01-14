@@ -1,4 +1,5 @@
 ﻿using System;
+using TextBasedGameplay.GameLogic;
 
 namespace TextBasedGameplay
 {
@@ -6,7 +7,8 @@ namespace TextBasedGameplay
     {
         static void Main(string[] args)
         {
-
+            GamePlay game = new GamePlay();
+            game.WelcomeScreen();
         }
     }
 }
