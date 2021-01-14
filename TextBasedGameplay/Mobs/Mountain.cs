@@ -17,7 +17,7 @@ namespace TextBasedGameplay.Mobs
 
         public override string Describe()
         {
-            return $"A {Name} comes barreling towards you! The creature {Movement} and charges!";
+            return $"A {Name} comes barreling towards you! The creature {Movement} and {Appearence}!";
         }
     }
 }

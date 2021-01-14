@@ -8,7 +8,7 @@ namespace TextBasedGameplay
         static void Main(string[] args)
         {
             GamePlay game = new GamePlay();
-            game.WelcomeScreen();
+            game.Run();
         }
     }
 }
