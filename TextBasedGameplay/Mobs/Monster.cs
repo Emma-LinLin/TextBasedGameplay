@@ -35,5 +35,12 @@ namespace TextBasedGameplay.Mobs
             HealthPoints -= damage;
             return HealthPoints;
         }
+        public int GiveExperience()
+        {
+            Random rnd = new Random();
+            int experiencePoints = rnd.Next(-5, 5);
+
+            return ExperiencePoints + experiencePoints;
+        }
     }
 }

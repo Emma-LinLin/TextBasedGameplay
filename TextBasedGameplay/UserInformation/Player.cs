@@ -49,5 +49,25 @@ namespace TextBasedGameplay.UserInformation
             HealthPoints -= damage;
             return HealthPoints;
         }
+
+        public int GainExperience(int gainedPoints)
+        {
+            ExperiencePoints += gainedPoints;
+
+            if(ExperiencePoints >= MaxExperiencePoints)
+            {
+                LevelUp();
+            }
+            return ExperiencePoints;
+
+        }
+        public void LevelUp()
+        {
+            Level++;
+            HealthPoints = 200;
+            ExperiencePoints = 0;
+
+            Console.WriteLine($"Level up!\nYou're now level {Level} and have {HealthPoints} HP!");
+        }
     }
 }

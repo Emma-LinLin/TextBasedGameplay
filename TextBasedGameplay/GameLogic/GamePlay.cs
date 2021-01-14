@@ -83,7 +83,10 @@ namespace TextBasedGameplay.GameLogic
 
                 if (generatedMonster.HealthPoints <= 0)
                 {
-                    Console.WriteLine($"The {generatedMonster.Name} is dead!");
+                    int gainedPoints = generatedMonster.GiveExperience();
+                    Console.WriteLine($"The {generatedMonster.Name} is dead, you've gained {gainedPoints} EXP!");
+
+                    User.GainExperience(gainedPoints);
                     break;
                 }
 
