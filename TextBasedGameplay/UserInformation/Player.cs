@@ -36,5 +36,18 @@ namespace TextBasedGameplay.UserInformation
         {
             return $"{Name} - lvl {Level}\nHealth points: {HealthPoints}/{MaxHealthPoints}\nExperience points: {ExperiencePoints}/{MaxExperiencePoints}\nDamage: {Damage}";
         }
+
+        public int Attack()
+        {
+            Random rnd = new Random();
+            int damage = rnd.Next(-2, 2);
+
+            return Damage + damage;
+        }
+        public int TakeDamage(int damage)
+        {
+            HealthPoints -= damage;
+            return HealthPoints;
+        }
     }
 }

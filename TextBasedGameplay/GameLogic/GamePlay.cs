@@ -66,6 +66,40 @@ namespace TextBasedGameplay.GameLogic
             var generatedMonster = listOfMonsters[r];
 
             Console.WriteLine(generatedMonster.Describe());
+            BattleMode(generatedMonster);
+        }
+        public void BattleMode(Monster generatedMonster)
+        {
+            generatedMonster.HealthPoints = 50;
+
+            while (true)
+            {
+                int damage = User.Attack();
+                generatedMonster.TakeDamage(damage);
+
+                Console.WriteLine($"{User.Name} Attacks! Dealing {damage} in damage,\n{generatedMonster.Name} is down to {generatedMonster.HealthPoints} HP!");
+                Console.WriteLine("[Press enter to continue]");
+                Console.ReadLine();
+
+                if (generatedMonster.HealthPoints <= 0)
+                {
+                    Console.WriteLine($"The {generatedMonster.Name} is dead!");
+                    break;
+                }
+
+                damage = generatedMonster.Attack();
+                User.TakeDamage(damage);
+
+                Console.WriteLine($"{generatedMonster.Name} attacks! Dealing {damage} in damage,\n{User.Name} is down to {User.HealthPoints} HP!");
+                Console.WriteLine("[Press enter to continue]");
+                Console.ReadLine();
+
+                if(User.HealthPoints <= 0)
+                {
+                    Console.WriteLine($"You were killed by the {generatedMonster.Name}");
+                    break;
+                }
+            }
         }
         public void ViewPlayerDetails()
         {
