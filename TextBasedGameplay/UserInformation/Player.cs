@@ -15,12 +15,14 @@ namespace TextBasedGameplay.UserInformation
         public int MaxExperiencePoints { get; }
         public int Damage { get; set; }
 
+        public int Gold { get; set; }
+
         public Player()
         {
 
         }
 
-        public Player(string name, int level, int maxLevel, int healthPoints, int maxHealthPoints, int experiencePoints, int maxExperiencePoints, int damage)
+        public Player(string name, int level, int maxLevel, int healthPoints, int maxHealthPoints, int experiencePoints, int maxExperiencePoints, int damage, int gold)
         {
             Name = name;
             Level = level;
@@ -30,11 +32,12 @@ namespace TextBasedGameplay.UserInformation
             ExperiencePoints = experiencePoints;
             MaxExperiencePoints = maxExperiencePoints;
             Damage = damage;
+            Gold = gold;
         }
 
         public string Describe()
         {
-            return $"{Name} - lvl {Level}\nHealth points: {HealthPoints}/{MaxHealthPoints}\nExperience points: {ExperiencePoints}/{MaxExperiencePoints}\nDamage: {Damage}";
+            return $"{Name} - lvl {Level}\nHealth points: {HealthPoints}/{MaxHealthPoints}\nExperience points: {ExperiencePoints}/{MaxExperiencePoints}\nDamage: {Damage}\nGold: {Gold}";
         }
 
         public int Attack()
@@ -68,6 +71,12 @@ namespace TextBasedGameplay.UserInformation
             ExperiencePoints = 0;
 
             Console.WriteLine($"Level up!\nYou're now level {Level} and have {HealthPoints} HP!");
+        }
+
+        public int GetGold(int gold)
+        {
+            Gold += gold;
+            return Gold;
         }
     }
 }
