@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TextBasedGameplay.UserInformation;
 
 namespace TextBasedGameplay.GameLogic
 {
     class GamePlay
     {
+        static Player User = new Player();
+
         public void WelcomeScreen()
         {
             Console.WriteLine("Hello and welcome to Hunt\'a\'Monster!");
             Console.WriteLine();
             Console.Write("Please enter your battle name: ");
             string userName = Console.ReadLine();
+            
+            User = new Player(userName, 1, 10, 200, 200, 0, 100, 10);
 
             bool keepRepeating = true;
 
@@ -31,7 +36,7 @@ namespace TextBasedGameplay.GameLogic
                         GoHunting();
                         break;
                     case 2:
-                        ViewPlayerStats();
+                        ViewPlayerDetails();
                         break;
                     case 3:
                         Console.WriteLine("Until next time!");
@@ -49,9 +54,11 @@ namespace TextBasedGameplay.GameLogic
         {
 
         }
-        public void ViewPlayerStats()
+        public void ViewPlayerDetails()
         {
-
+            Console.WriteLine(User.Describe());
+            Console.WriteLine("[Press enter to continue]");
+            Console.ReadLine();
         }
     }
 }
