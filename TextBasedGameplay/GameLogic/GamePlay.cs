@@ -37,7 +37,7 @@ namespace TextBasedGameplay.GameLogic
                 Console.WriteLine("2. View player stats");
                 Console.WriteLine("3. Exit game");
 
-                int userInput = int.Parse(Console.ReadLine());
+                int userInput = ParseUserInput();
 
                 switch (userInput)
                 {
@@ -59,14 +59,46 @@ namespace TextBasedGameplay.GameLogic
             }
             
         }
+        public int ParseUserInput()
+        {
+            int userInput;
+
+            while (true)
+            {
+                try
+                {
+                    userInput = int.Parse(Console.ReadLine());
+                    return userInput;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Only numbers please! Try again");
+                }
+
+            }
+        }
         public void GoHunting()
         {
             Random rnd = new Random();
-            int r = rnd.Next(listOfMonsters.Count());
-            var generatedMonster = listOfMonsters[r];
+            int rollForAdventure = rnd.Next(1, 11);
 
-            Console.WriteLine(generatedMonster.Describe());
-            BattleMode(generatedMonster);
+            if(rollForAdventure == 10)
+            {
+                Console.WriteLine("You're looking around, but there's nothing but trees here. Better head home again I guess.");
+                Console.WriteLine("[Press enter to continue]");
+                Console.ReadLine();
+            }
+            else
+            {
+                int r = rnd.Next(listOfMonsters.Count());
+                var generatedMonster = listOfMonsters[r];
+
+                Console.WriteLine(generatedMonster.Describe());
+                Console.WriteLine("Press enter to continue");
+                Console.ReadLine();
+
+                BattleMode(generatedMonster);
+            }
         }
         public void BattleMode(Monster generatedMonster)
         {
