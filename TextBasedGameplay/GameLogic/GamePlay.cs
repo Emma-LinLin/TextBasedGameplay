@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TextBasedGameplay.Mobs;
+using TextBasedGameplay.ShopInformation;
 using TextBasedGameplay.UserInformation;
 
 namespace TextBasedGameplay.GameLogic
@@ -20,6 +21,8 @@ namespace TextBasedGameplay.GameLogic
         
         public void WelcomeScreen()
         {
+            Store store = new Store();
+
             Console.WriteLine("Hello and welcome to Hunt\'a\'Monster!");
             Console.WriteLine();
             Console.Write("Please enter your battle name: ");
@@ -35,7 +38,8 @@ namespace TextBasedGameplay.GameLogic
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("1. Hunt monsters!");
                 Console.WriteLine("2. View player stats");
-                Console.WriteLine("3. Exit game");
+                Console.WriteLine("3. Visit the nearest merchant");
+                Console.WriteLine("4. Exit game");
 
                 int userInput = ParseUserInput();
 
@@ -48,6 +52,9 @@ namespace TextBasedGameplay.GameLogic
                         ViewPlayerDetails();
                         break;
                     case 3:
+                        store.Run();
+                        break;
+                    case 4:
                         Console.WriteLine("Until next time!");
                         keepRepeating = false;
                         break;
