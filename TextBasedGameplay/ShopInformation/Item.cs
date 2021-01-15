@@ -4,13 +4,13 @@ using System.Text;
 
 namespace TextBasedGameplay.ShopInformation
 {
-    class Items
+    class Item
     {
         public string Name { get; }
         public int Price { get; }
         public int Gold { get; set; }
 
-        public Items(string name, int price)
+        public Item(string name, int price)
         {
             Name = name;
             Price = price;

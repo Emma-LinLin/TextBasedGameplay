@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TextBasedGameplay.ShopInformation
 {
-    class Gear : Items
+    class Gear : Item
     {
         public int Armour { get; }
         public Gear(string name, int price, int armour): base(name, price)
@@ -13,7 +13,7 @@ namespace TextBasedGameplay.ShopInformation
         }
         public override string Describe()
         {
-            return $"Gear: {Name} - Costs: {Price} gold\nArmour: +{Armour}";
+            return $"{Name} - Costs: {Price} gold\nArmour: +{Armour}";
         }
     }
 }

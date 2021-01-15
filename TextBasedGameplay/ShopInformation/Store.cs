@@ -6,9 +6,11 @@ namespace TextBasedGameplay.ShopInformation
 {
     class Store
     {
+        static List<Item> listOfItems = new List<Item>();
+
         public void Run()
         {
-            //GenerateItems();
+            GenerateItems();
             WelcomeScreen();
         }
         public void WelcomeScreen()
@@ -29,6 +31,7 @@ namespace TextBasedGameplay.ShopInformation
                 switch (userInput)
                 {
                     case 1:
+                        BrowseGoods();
                         break;
                     case 2:
                         Console.WriteLine("Have a good one!");
@@ -56,9 +59,26 @@ namespace TextBasedGameplay.ShopInformation
 
             }
         }
+        public void BrowseGoods()
+        {
+            foreach(var item in listOfItems)
+            {
+                Console.WriteLine();
+                Console.WriteLine(item.Describe());
+                Console.WriteLine("-----------------------------------");
+            }
+
+        }
         public void GenerateItems()
         {
-
+            listOfItems = new List<Item>
+            {
+                new Weapon("Wooden Sword", 100, 2),
+                new Weapon("Bling bling Axe", 200, 10),
+                new Weapon("Mehhh Sword", 150, 5),
+                new Gear("Leather Helmet", 150, 4),
+                new Gear("Sparkling Chestplate", 200, 10)
+            };
         }
     }
 }
