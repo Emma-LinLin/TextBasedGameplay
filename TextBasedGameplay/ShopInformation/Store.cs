@@ -125,10 +125,22 @@ namespace TextBasedGameplay.ShopInformation
                 user.Damage = 10;
                 user.Damage += ((Weapon)selectedItem).Damage;
             }
-            else if(selectedItem is Gear)
+            else if (selectedItem is Gear)
             {
                 user.Armour = 0;
                 user.Armour += ((Gear)selectedItem).Armour;
+            }
+            else if(selectedItem is StrengthAmulet)
+            {
+                user.Damage += ((StrengthAmulet)selectedItem).Damage;
+            }
+            else if(selectedItem is DefenseAmulet)
+            {
+                user.Armour += ((DefenseAmulet)selectedItem).Armour;
+            }
+            else if(selectedItem is Potion) 
+            {
+                user.HealthPoints = user.MaxHealthPoints;
             }
         }
         public void CraftItem()
@@ -170,11 +182,16 @@ namespace TextBasedGameplay.ShopInformation
         {
             listOfItems = new List<Item>
             {
-                new Weapon("Wooden Sword", 100, 2),
-                new Weapon("Bling bling Axe", 200, 10),
-                new Weapon("Mehhh Sword", 150, 5),
+                new Weapon("Wooden Sword", 150, 2),
+                new Weapon("Bling bling Axe", 300, 10),
+                new Weapon("Mehhh Sword", 200, 5),
                 new Gear("Leather Helmet", 150, 4),
-                new Gear("Sparkling Chestplate", 200, 10)
+                new Gear("Sparkling Chestplate", 300, 10),
+                new DefenseAmulet("Defense Amulet", 100, 2),
+                new DefenseAmulet("Advanced Defense Amulet", 200, 5),
+                new StrengthAmulet("Strength Amulet", 100, 2),
+                new StrengthAmulet("Advanced Strength Amulet", 200, 2),
+                new Potion("Health potion", 100, 100)
             };
         }
     }
