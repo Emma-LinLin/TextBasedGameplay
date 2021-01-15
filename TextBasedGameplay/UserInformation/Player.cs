@@ -78,5 +78,11 @@ namespace TextBasedGameplay.UserInformation
             Gold += gold;
             return Gold;
         }
+
+        public int GiveGold(int gold)
+        {
+            Gold -= gold;
+            return Gold;
+        }
     }
 }
