@@ -30,7 +30,8 @@ namespace TextBasedGameplay.ShopInformation
                 Console.WriteLine();
                 Console.WriteLine("Merchant: \"What can I do for ya'?\"");
                 Console.WriteLine("1. Let me browse your goods");
-                Console.WriteLine("2. Good bye");
+                Console.WriteLine("2. Can you craft something for me?");
+                Console.WriteLine("3. Good bye");
 
                 int userInput = ParseUserInput();
 
@@ -40,6 +41,9 @@ namespace TextBasedGameplay.ShopInformation
                         BrowseGoods();
                         break;
                     case 2:
+                        CraftItem();
+                        break;
+                    case 3:
                         Console.WriteLine("Merchant: \"Have a good one!\"");
                         keepReapeating = false;
                         break;
@@ -95,7 +99,7 @@ namespace TextBasedGameplay.ShopInformation
         }
         public void PurchaseItem()
         {
-            Console.WriteLine("Merchant: \"Great! Which one would ya like? Pick a number!\"");
+            Console.WriteLine("Merchant: \"Great! Which one would ya' like? Pick a number!\"");
             int index = ParseUserInput();
             index -= 1;
 
@@ -103,20 +107,64 @@ namespace TextBasedGameplay.ShopInformation
 
             if(user.Gold < selectedItem.Price)
             {
-                Console.WriteLine("Merchant: \"Seems like you don't have enough coin, lad.\"");
+                Console.WriteLine("Merchant: \"Seems like ya' don't have enough coin, lad.\"");
             }
             else
             {
                 user.GiveGold(selectedItem.Price);
                 Console.WriteLine($"You bought the {selectedItem.Name}!");
                 Console.WriteLine($"You now have {user.Gold} gold.");
+
+                Equip(selectedItem);
             }
-            
-            //Equip(selectedItem);
         }
-        public Item Equip(Item selectedItem)
+        public void Equip(Item selectedItem)
         {
-            return selectedItem;
+            if(selectedItem is Weapon)
+            {
+                user.Damage = 10;
+                user.Damage += ((Weapon)selectedItem).Damage;
+            }
+            else if(selectedItem is Gear)
+            {
+                user.Armour = 0;
+                user.Armour += ((Gear)selectedItem).Armour;
+            }
+        }
+        public void CraftItem()
+        {
+            Console.WriteLine("Merchant: \"Ay, I do some blacksmithin'. What did ya' have in mind?\"");
+            Console.WriteLine("1. I need some armour");
+            Console.WriteLine("2. I need a weapon");
+
+            int userChoice = ParseUserInput();
+
+            switch (userChoice)
+            {
+                case 1:
+                    Console.WriteLine();
+                    Console.WriteLine("A warriors chestplate - Costs: An absurd amount of gold");
+                    Console.WriteLine("--------------------------------------------------------");
+                    Console.WriteLine("Armour: 100\nStamina: 86\nBlock: 78%\nBlinding enemy: 100%, too much bling");
+                    Console.WriteLine("[Press enter to continue]");
+                    Console.ReadLine();
+                    break;
+                case 2:
+                    Console.WriteLine();
+                    Console.WriteLine("Ancient sword of Giants - Costs: An absurd amount of gold");
+                    Console.WriteLine("--------------------------------------------------------");
+                    Console.WriteLine("Damage: 1000\nFire Damage: 86%\nPiercing Damage: 78%\nAmaze enemy: 100%, can't even lift it");
+                    Console.WriteLine("[Press enter to continue]");
+                    Console.ReadLine();
+                    break;
+                default:
+                    Console.WriteLine("Can't do that mate.");
+                    break;
+            }
+
+            Console.WriteLine($"You dont have that amount of gold, you currently have {user.Gold} gold");
+            Console.WriteLine("Merchant: \"Sod off!\"");
+
         }
         public void GenerateItems()
         {

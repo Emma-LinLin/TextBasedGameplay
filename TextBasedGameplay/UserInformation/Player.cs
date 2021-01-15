@@ -14,15 +14,15 @@ namespace TextBasedGameplay.UserInformation
         public int ExperiencePoints { get; set; }
         public int MaxExperiencePoints { get; }
         public int Damage { get; set; }
-
         public int Gold { get; set; }
+        public int Armour { get; set; }
 
         public Player()
         {
 
         }
 
-        public Player(string name, int level, int maxLevel, int healthPoints, int maxHealthPoints, int experiencePoints, int maxExperiencePoints, int damage, int gold)
+        public Player(string name, int level, int maxLevel, int healthPoints, int maxHealthPoints, int experiencePoints, int maxExperiencePoints, int damage, int armour, int gold)
         {
             Name = name;
             Level = level;
@@ -32,12 +32,13 @@ namespace TextBasedGameplay.UserInformation
             ExperiencePoints = experiencePoints;
             MaxExperiencePoints = maxExperiencePoints;
             Damage = damage;
+            Armour = armour;
             Gold = gold;
         }
 
         public string Describe()
         {
-            return $"{Name} - lvl {Level}\nHealth points: {HealthPoints}/{MaxHealthPoints}\nExperience points: {ExperiencePoints}/{MaxExperiencePoints}\nDamage: {Damage}\nGold: {Gold}";
+            return $"{Name} - lvl {Level}\nHealth points: {HealthPoints}/{MaxHealthPoints}\nExperience points: {ExperiencePoints}/{MaxExperiencePoints}\nDamage: {Damage}\nArmour: {Armour}\nGold: {Gold}";
         }
 
         public int Attack()
