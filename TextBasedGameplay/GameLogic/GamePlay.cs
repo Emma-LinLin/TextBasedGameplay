@@ -52,11 +52,14 @@ namespace TextBasedGameplay.GameLogic
                         ViewPlayerDetails();
                         break;
                     case 3:
-                        store.Run();
+                        store.Run(User);
                         break;
                     case 4:
                         Console.WriteLine("Until next time!");
                         keepRepeating = false;
+                        break;
+                    case 9:
+                        TheMotherLode();
                         break;
                     default:
                         Console.WriteLine("Not a valid option");
@@ -150,6 +153,12 @@ namespace TextBasedGameplay.GameLogic
             Console.WriteLine(User.Describe());
             Console.WriteLine("[Press enter to continue]");
             Console.ReadLine();
+        }
+        public void TheMotherLode()
+        {
+            User.Gold += 500;
+            Console.WriteLine();
+            Console.WriteLine($"Motherlode! You found a sunken treasure, you've gained 500 gold!\nYou now have {User.Gold} gold");
         }
         public void GenerateMonsters()
         {
