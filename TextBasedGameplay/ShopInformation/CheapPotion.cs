@@ -6,8 +6,8 @@ namespace TextBasedGameplay.ShopInformation
 {
     class CheapPotion : Item
     {
-        private int HealthPoints { get; }
-        private CheapPotion(string name, int price, int healthPoints) : base(name, price)
+        public int HealthPoints { get; }
+        public CheapPotion(string name, int price, int healthPoints) : base(name, price)
         {
             HealthPoints = healthPoints;
         }

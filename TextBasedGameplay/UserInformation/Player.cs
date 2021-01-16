@@ -81,7 +81,10 @@ namespace TextBasedGameplay.UserInformation
 
             if(Level == 10)
             {
+                Console.WriteLine();
+                Console.WriteLine("*********************************************************");
                 Console.WriteLine($"Congratulations, you're now level {Level} you've won the game!");
+                Console.WriteLine("*********************************************************");
             }
             else
             {

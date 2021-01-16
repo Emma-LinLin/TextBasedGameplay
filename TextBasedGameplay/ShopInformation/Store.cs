@@ -47,6 +47,8 @@ namespace TextBasedGameplay.ShopInformation
                         Console.WriteLine("Merchant: \"Have a good one!\"");
                         keepReapeating = false;
                         break;
+                    default:
+                        break;
                 }
             }
         }
@@ -140,6 +142,24 @@ namespace TextBasedGameplay.ShopInformation
             {
                 user.HealthPoints = user.MaxHealthPoints;
             }
+            else if(selectedItem is CheapPotion)
+            {
+                int healthPoints = user.MaxHealthPoints / 2;
+
+                if(user.HealthPoints > healthPoints)
+                {
+                    user.HealthPoints = healthPoints;
+                    Console.WriteLine($"You drank the potion, you now have {user.HealthPoints}/{user.MaxHealthPoints}!?");
+                    Console.WriteLine();
+                    Console.WriteLine("Merchant: \"Hahaha, ya' get what ya' pay for lad! The nearest herbalist is an old drunk!\"");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    user.HealthPoints += healthPoints;
+                    Console.WriteLine($"You dank the potion, you now have {user.HealthPoints}/{user.MaxHealthPoints}!");
+                }
+            }
         }
         private void CraftItem()
         {
@@ -163,7 +183,7 @@ namespace TextBasedGameplay.ShopInformation
                     Console.WriteLine();
                     Console.WriteLine("Ancient sword of Giants - Costs: An absurd amount of gold");
                     Console.WriteLine("--------------------------------------------------------");
-                    Console.WriteLine("Damage: 1000\nFire Damage: 86%\nPiercing Damage: 78%\nAmaze enemy: 100%, can't even lift it");
+                    Console.WriteLine("Damage: 1000\nFire Damage: 86%\nPiercing Damage: 78%\nAmaze enemy: 100%, it's gigantic");
                     Console.WriteLine("[Press enter to continue]");
                     Console.ReadLine();
                     break;
@@ -181,15 +201,16 @@ namespace TextBasedGameplay.ShopInformation
             listOfItems = new List<Item>
             {
                 new Weapon("Wooden Sword", 150, 2),
-                new Weapon("Bling bling Axe", 300, 10),
-                new Weapon("Mehhh Sword", 200, 5),
+                new Weapon("BlingBling Axe", 300, 10),
+                new Weapon("Not'that'Amazing Sword", 200, 5),
                 new Gear("Leather Helmet", 150, 4),
                 new Gear("Sparkling Chestplate", 300, 10),
                 new DefenseAmulet("Defense Amulet", 100, 2),
                 new DefenseAmulet("Advanced Defense Amulet", 200, 5),
                 new StrengthAmulet("Strength Amulet", 100, 2),
                 new StrengthAmulet("Advanced Strength Amulet", 200, 5),
-                new Potion("Health potion", 100, 100)
+                new Potion("Health potion", 100, 100),
+                new CheapPotion("Sketchy health potion", 30, 50)
             };
         }
     }
