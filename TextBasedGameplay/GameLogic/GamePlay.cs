@@ -10,8 +10,8 @@ namespace TextBasedGameplay.GameLogic
 {
     class GamePlay
     {
-        static Player User = new Player();
-        static List<Monster> listOfMonsters = new List<Monster>();
+        private static Player User = new Player();
+        private static List<Monster> listOfMonsters = new List<Monster>();
 
         public void Run()
         {
@@ -19,7 +19,7 @@ namespace TextBasedGameplay.GameLogic
             WelcomeScreen();
         }
         
-        public void WelcomeScreen()
+        private void WelcomeScreen()
         {
             Store store = new Store();
 
@@ -69,7 +69,7 @@ namespace TextBasedGameplay.GameLogic
             }
             
         }
-        public int ParseUserInput()
+        private int ParseUserInput()
         {
             int userInput;
 
@@ -87,7 +87,7 @@ namespace TextBasedGameplay.GameLogic
 
             }
         }
-        public void GoHunting()
+        private void GoHunting()
         {
             Random rnd = new Random();
             int rollForAdventure = rnd.Next(1, 11);
@@ -110,7 +110,7 @@ namespace TextBasedGameplay.GameLogic
                 BattleMode(generatedMonster);
             }
         }
-        public void BattleMode(Monster generatedMonster)
+        private void BattleMode(Monster generatedMonster)
         {
             generatedMonster.HealthPoints = 50;
 
@@ -148,19 +148,19 @@ namespace TextBasedGameplay.GameLogic
                 }
             }
         }
-        public void ViewPlayerDetails()
+        private void ViewPlayerDetails()
         {
             Console.WriteLine(User.Describe());
             Console.WriteLine("[Press enter to continue]");
             Console.ReadLine();
         }
-        public void TheMotherLode()
+        private void TheMotherLode()
         {
             User.Gold += 500;
             Console.WriteLine();
             Console.WriteLine($"Motherlode! You found a sunken treasure, you've gained 500 gold!\nYou now have {User.Gold} gold");
         }
-        public void GenerateMonsters()
+        private void GenerateMonsters()
         {
             listOfMonsters = new List<Monster>
             {

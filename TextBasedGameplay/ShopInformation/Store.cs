@@ -7,7 +7,7 @@ namespace TextBasedGameplay.ShopInformation
 {
     class Store
     {
-        static List<Item> listOfItems = new List<Item>();
+        private static List<Item> listOfItems = new List<Item>();
         private Player user;
         public void Run(Player User)
         {
@@ -16,12 +16,12 @@ namespace TextBasedGameplay.ShopInformation
             GenerateItems();
             WelcomeScreen();
         }
-        public void WelcomeScreen()
+        private void WelcomeScreen()
         {
             Console.WriteLine("Merchant: \"Welcome warrior! Ye're not from around here are ya'? \n-Ahem, guessing that's none of my concern\"");
             StoreMeny();
         }
-        public void StoreMeny()
+        private void StoreMeny()
         {
             bool keepReapeating = true;
 
@@ -50,7 +50,7 @@ namespace TextBasedGameplay.ShopInformation
                 }
             }
         }
-        public int ParseUserInput()
+        private int ParseUserInput()
         {
             int userInput;
 
@@ -68,7 +68,7 @@ namespace TextBasedGameplay.ShopInformation
 
             }
         }
-        public void BrowseGoods()
+        private void BrowseGoods()
         {
             int index = 0;
 
@@ -97,7 +97,7 @@ namespace TextBasedGameplay.ShopInformation
                     break;
             }
         }
-        public void PurchaseItem()
+        private void PurchaseItem()
         {
             Console.WriteLine("Merchant: \"Great! Which one would ya' like? Pick a number!\"");
             int index = ParseUserInput();
@@ -118,7 +118,7 @@ namespace TextBasedGameplay.ShopInformation
                 Equip(selectedItem);
             }
         }
-        public void Equip(Item selectedItem)
+        private void Equip(Item selectedItem)
         {
             if(selectedItem is Weapon)
             {
@@ -141,7 +141,7 @@ namespace TextBasedGameplay.ShopInformation
                 user.HealthPoints = user.MaxHealthPoints;
             }
         }
-        public void CraftItem()
+        private void CraftItem()
         {
             Console.WriteLine("Merchant: \"Ay, I do some blacksmithin'. What did ya' have in mind?\"");
             Console.WriteLine("1. I need some armour");
@@ -176,7 +176,7 @@ namespace TextBasedGameplay.ShopInformation
             Console.WriteLine("Merchant: \"Sod off!\"");
 
         }
-        public void GenerateItems()
+        private void GenerateItems()
         {
             listOfItems = new List<Item>
             {
