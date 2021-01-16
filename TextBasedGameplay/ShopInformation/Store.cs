@@ -18,7 +18,7 @@ namespace TextBasedGameplay.ShopInformation
         }
         public void WelcomeScreen()
         {
-            Console.WriteLine("Merchant: \"Welcome warrior! Ye're not from around here are ya'?\" \n\"-Ahem, guessing that's none of my concern\"");
+            Console.WriteLine("Merchant: \"Welcome warrior! Ye're not from around here are ya'? \n-Ahem, guessing that's none of my concern\"");
             StoreMeny();
         }
         public void StoreMeny()
@@ -122,21 +122,19 @@ namespace TextBasedGameplay.ShopInformation
         {
             if(selectedItem is Weapon)
             {
-                user.Damage = 10;
-                user.Damage += ((Weapon)selectedItem).Damage;
+                user.EquipDamage = ((Weapon)selectedItem).Damage;
             }
             else if (selectedItem is Gear)
             {
-                user.Armour = 0;
-                user.Armour += ((Gear)selectedItem).Armour;
+                user.EquipArmour = ((Gear)selectedItem).Armour;
             }
             else if(selectedItem is StrengthAmulet)
             {
-                user.Damage += ((StrengthAmulet)selectedItem).Damage;
+                user.EquipDamage = ((StrengthAmulet)selectedItem).Damage;
             }
             else if(selectedItem is DefenseAmulet)
             {
-                user.Armour += ((DefenseAmulet)selectedItem).Armour;
+                user.EquipArmour = ((DefenseAmulet)selectedItem).Armour;
             }
             else if(selectedItem is Potion) 
             {
@@ -190,7 +188,7 @@ namespace TextBasedGameplay.ShopInformation
                 new DefenseAmulet("Defense Amulet", 100, 2),
                 new DefenseAmulet("Advanced Defense Amulet", 200, 5),
                 new StrengthAmulet("Strength Amulet", 100, 2),
-                new StrengthAmulet("Advanced Strength Amulet", 200, 2),
+                new StrengthAmulet("Advanced Strength Amulet", 200, 5),
                 new Potion("Health potion", 100, 100)
             };
         }

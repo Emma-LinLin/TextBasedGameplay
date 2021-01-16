@@ -28,11 +28,11 @@ namespace TextBasedGameplay.GameLogic
             Console.Write("Please enter your battle name: ");
             string userName = Console.ReadLine();
             
-            User = new Player(userName, 1, 10, 200, 200, 0, 100, 10, 0, 0);
+            User = new Player(userName, 1, 200, 200, 0, 100, 10, 2, 0, 0, 0);
 
             bool keepRepeating = true;
 
-            while (keepRepeating)
+            while (keepRepeating && User.Level < 10)
             {
                 Console.WriteLine();
                 Console.WriteLine("What would you like to do?");
