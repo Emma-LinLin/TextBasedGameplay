@@ -147,10 +147,23 @@ namespace TextBasedGameplay.GameLogic
                     break;
                 }
 
+                int totalArmour = User.Armour + User.EquipArmour;
+
                 damage = generatedMonster.Attack();
+
+                if(damage <= totalArmour)
+                {
+                    damage = 0;
+                }
+                else
+                {
+                    damage -= totalArmour;
+                }
+
                 User.TakeDamage(damage);
 
-                Console.WriteLine($"{generatedMonster.Name} attacks! Dealing {damage} in damage,\n{User.Name} is down to {User.HealthPoints} HP!");
+                Console.WriteLine($"{generatedMonster.Name} attacks! Dealing {damage} in damage!");
+                Console.WriteLine($"{User.Name} is down to {User.HealthPoints} HP!");
                 Console.WriteLine("[Press enter to continue]");
                 Console.ReadLine();
 
@@ -163,7 +176,10 @@ namespace TextBasedGameplay.GameLogic
         }
         private void ViewPlayerDetails()
         {
+            Console.WriteLine("*************************************");
             Console.WriteLine(User.Describe());
+            Console.WriteLine("*************************************");
+            Console.WriteLine();
             Console.WriteLine("[Press enter to continue]");
             Console.ReadLine();
         }
@@ -177,14 +193,14 @@ namespace TextBasedGameplay.GameLogic
         {
             listOfMonsters = new List<Monster>
             {
-                new Swamp("Drowner", 50, 50, 50, 5, "gurgelinggurgelinggurg", "swamp", 10),
-                new Swamp("Rottner", 50, 50, 50, 5, "screeching", "swamp", 10),
-                new Water("Hydra", 50, 50, 50, 5, "ROOAAAAAR!", "water", 10),
-                new Water("Siren", 50, 50, 50, 5, "with a witchy laughter", "water", 10),
-                new Forest("Ent", 55, 50, 50, 5, "limping", "gnarly looking", 15),
-                new Forest("Forest Guardian", 50, 50, 50, 6, "slowly", "tall and crooked looking", 15),
-                new Mountain("Minotaur", 55, 50, 50, 6, "lowering it's horns", "stomps it's hooves", 15),
-                new Mountain("Yeti", 55, 50, 50, 6, "claps it's gigantic hands", "grins", 15)
+                new Swamp("Drowner", 30, 30, 50, 4, "gurgelinggurgelinggurg", "swamp", 9),
+                new Swamp("Rottner", 30, 30, 50, 4, "screeching", "swamp", 9),
+                new Water("Hydra", 30, 30, 50, 4, "ROOAAAAAR!", "water", 9),
+                new Water("Siren", 30, 30, 50, 4, "with a witchy laughter", "water", 9),
+                new Forest("Ent", 30, 30, 50, 4, "limping", "gnarly looking", 12),
+                new Forest("Forest Guardian", 40, 40, 50, 5, "slowly", "tall and crooked looking", 12),
+                new Mountain("Minotaur", 40, 40, 50, 5, "lowering it's horns", "stomps it's hooves", 12),
+                new Mountain("Yeti", 40, 40, 50, 5, "claps it's gigantic hands", "grins", 12)
             };
         }
     }

@@ -56,7 +56,7 @@ namespace TextBasedGameplay.Mobs
         {
             Damage++;
             Gold++;
-            MaxHealthPoints += 10;
+            MaxHealthPoints += 5;
             ExperiencePoints -= 2;
         }
     }

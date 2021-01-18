@@ -55,8 +55,6 @@ namespace TextBasedGameplay.UserInformation
         }
         public int TakeDamage(int damage)
         {
-            damage -= Armour + EquipArmour;
-
             HealthPoints -= damage;
             return HealthPoints;
         }
