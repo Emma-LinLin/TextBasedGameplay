@@ -34,7 +34,7 @@ namespace TextBasedGameplay.GameLogic
             Console.WriteLine("We've had trouble with some of our miners, they told me that they found a silver vein up the mountains..");
             Console.WriteLine("They ventured out 5 days ago, haven't seen them since, could you take a look?\"");
             Console.WriteLine();
-            Console.WriteLine($"[Recommended Level for this quest is 7+, you're currently on Level: {user.Level}]");
+            Console.WriteLine($"[Recommended Level for this quest is 5+, you're currently on Level: {user.Level}]");
             
             bool keepRepeating = true;
 

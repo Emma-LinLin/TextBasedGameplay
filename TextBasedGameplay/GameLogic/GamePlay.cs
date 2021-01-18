@@ -13,6 +13,7 @@ namespace TextBasedGameplay.GameLogic
     {
         private Player User = new Player();
         private List<Monster> listOfMonsters = new List<Monster>();
+        private List<Elite> listOfEliteMonsters = new List<Elite>();
 
         public void Run()
         {
@@ -67,6 +68,9 @@ namespace TextBasedGameplay.GameLogic
                     case 9:
                         TheMotherLode();
                         break;
+                    case 20:
+                        GodMode();
+                        break;
                     case 1337:
                         quest.Run(User);
                         break;
@@ -113,6 +117,17 @@ namespace TextBasedGameplay.GameLogic
                 Console.WriteLine("You're looking around, but there's nothing but trees here. Better head home again I guess.");
                 Console.WriteLine("[Press enter to continue]");
                 Console.ReadLine();
+            }
+            else if(rollForAdventure == 2 && User.Level >= 5)
+            {
+                int random = rnd.Next(listOfEliteMonsters.Count());
+                var generatedMonster = listOfEliteMonsters[random];
+
+                Console.WriteLine(generatedMonster.Describe());
+                Console.WriteLine("[Press enter to continue]");
+                Console.ReadLine();
+
+                BattleMode(User, generatedMonster);
             }
             else
             {
@@ -211,6 +226,25 @@ namespace TextBasedGameplay.GameLogic
             Console.WriteLine($"Motherlode! You found a sunken treasure, you've gained 500 gold!\nYou now have {User.Gold} gold");
         }
         /// <summary>
+        /// Super fast play through!
+        /// </summary>
+        private void GodMode()
+        {
+            User.Level = 5;
+            User.HealthPoints = 130;
+            User.MaxHealthPoints = 130;
+            User.Damage = 20;
+            User.Gold += 500;
+
+            Console.WriteLine("*************************************");
+            Console.WriteLine("GOD MODE ACTIVATED");
+            Console.WriteLine();
+            Console.WriteLine(User.Describe());
+            Console.WriteLine("*************************************");
+            Console.WriteLine("[Press enter to continue]");
+            Console.ReadLine();
+        }
+        /// <summary>
         /// Generates different monsters and add's them to listOfMonsters
         /// </summary>
         private void GenerateMonsters()
@@ -225,6 +259,13 @@ namespace TextBasedGameplay.GameLogic
                 new Forest("Forest Guardian", 40, 40, 50, 5, "slowly", "tall and crooked looking", 12),
                 new Mountain("Minotaur", 40, 40, 50, 5, "lowering it's horns", "stomps it's hooves", 12),
                 new Mountain("Yeti", 40, 40, 50, 5, "claps it's gigantic hands", "grins", 12)
+            };
+
+            listOfEliteMonsters = new List<Elite>
+            {
+                new Elite("Basilisk", 140, 140, 60, 15, "slithering","long and slimey", 100),
+                new Elite("Griffin", 140, 140, 60, 15, "flying","smacking it's beak", 100),
+                new Elite("Meduza", 140, 140, 60, 15, "quickly","horrible looking", 100),
             };
         }
     }
