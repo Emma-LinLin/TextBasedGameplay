@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TextBasedGameplay.Interface;
 using TextBasedGameplay.UserInformation;
 
 namespace TextBasedGameplay.ShopInformation
@@ -9,6 +10,9 @@ namespace TextBasedGameplay.ShopInformation
     {
         private static List<Item> listOfItems = new List<Item>();
         private Player user;
+        /// <summary>
+        /// Runs the in game Store sequence where you can buy goods to update User damage, armour etc.
+        /// </summary>
         public void Run(Player User)
         {
             user = User;
@@ -21,6 +25,9 @@ namespace TextBasedGameplay.ShopInformation
             Console.WriteLine("Merchant: \"Welcome warrior! Ye're not from around here are ya'? \n-Ahem, guessing that's none of my concern\"");
             StoreMeny();
         }
+        /// <summary>
+        /// Will keep repeating until the user decides to quit.
+        /// </summary>
         private void StoreMeny()
         {
             bool keepReapeating = true;
@@ -70,6 +77,9 @@ namespace TextBasedGameplay.ShopInformation
 
             }
         }
+        /// <summary>
+        /// Shows all items in listOfItems being able to choose if wanting to make a purchase or not. 
+        /// </summary>
         private void BrowseGoods()
         {
             int index = 0;
@@ -94,11 +104,16 @@ namespace TextBasedGameplay.ShopInformation
                     PurchaseItem();
                     break;
                 case "no":
+                    Console.WriteLine();
+                    Console.WriteLine("Merchant: \"Your loss lad!\"");
                     break;
                 default:
                     break;
             }
         }
+        /// <summary>
+        /// Asks user to select which item they would like to buy. If user don't have enough gold they wont be able to purchase.
+        /// </summary>
         private void PurchaseItem()
         {
             Console.WriteLine("Merchant: \"Great! Which one would ya' like? Pick a number!\"");
@@ -120,6 +135,9 @@ namespace TextBasedGameplay.ShopInformation
                 Equip(selectedItem);
             }
         }
+        /// <summary>
+        /// When the selected item is bought, it's features(+damage, +armour) will be added to the users details.
+        /// </summary>
         private void Equip(Item selectedItem)
         {
             if(selectedItem is Weapon)
@@ -142,6 +160,8 @@ namespace TextBasedGameplay.ShopInformation
             {
                 user.HealthPoints = user.MaxHealthPoints;
             }
+            //CheapPotion is 50/50 when using. If the users health points is below 50% of max health, the potion will add 50% of max to the users health points.
+            //If the users health points is more than 50% of max, it will drain health points to be exactly 50% of max. 
             else if(selectedItem is CheapPotion)
             {
                 int healthPoints = user.MaxHealthPoints / 2;
@@ -161,6 +181,9 @@ namespace TextBasedGameplay.ShopInformation
                 }
             }
         }
+        /// <summary>
+        /// Dialogue between User and Merchant
+        /// </summary>
         private void CraftItem()
         {
             Console.WriteLine("Merchant: \"Ay, I do some blacksmithin'. What did ya' have in mind?\"");
@@ -196,6 +219,9 @@ namespace TextBasedGameplay.ShopInformation
             Console.WriteLine("Merchant: \"Sod off!\"");
 
         }
+        /// <summary>
+        /// Method generates all items and adds them to listOfItems.
+        /// </summary>
         private void GenerateItems()
         {
             listOfItems = new List<Item>

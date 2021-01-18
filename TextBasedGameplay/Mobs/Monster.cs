@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TextBasedGameplay.Interface;
 
 namespace TextBasedGameplay.Mobs
 {
-    class Monster
+    abstract class Monster : IDamage
     {
         public string Name { get; }
         public int HealthPoints { get; set; }

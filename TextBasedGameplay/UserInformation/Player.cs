@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TextBasedGameplay.Interface;
 using TextBasedGameplay.Mobs;
 
 namespace TextBasedGameplay.UserInformation
 {
-    class Player
+    class Player : IDamage
     {
         public string Name { get; }
         public int Level { get; set; }
