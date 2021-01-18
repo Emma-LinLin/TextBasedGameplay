@@ -88,7 +88,10 @@ namespace TextBasedGameplay.UserInformation
             }
             else
             {
+                Console.WriteLine();
+                Console.WriteLine("*********************************************************");
                 Console.WriteLine($"Level up!\nYou're now level {Level}!\nYour base damage has increased to {Damage} and {HealthPoints}/{MaxHealthPoints} HP!");
+                Console.WriteLine("*********************************************************");
             }
         }
 

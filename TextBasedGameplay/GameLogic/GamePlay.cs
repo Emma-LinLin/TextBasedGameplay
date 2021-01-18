@@ -23,6 +23,7 @@ namespace TextBasedGameplay.GameLogic
         private void WelcomeScreen()
         {
             Store store = new Store();
+            SideQuest quest = new SideQuest();
 
             Console.WriteLine();
             Console.WriteLine("*************************************");
@@ -65,6 +66,9 @@ namespace TextBasedGameplay.GameLogic
                         break;
                     case 9:
                         TheMotherLode();
+                        break;
+                    case 1337:
+                        quest.Run(User);
                         break;
                     default:
                         Console.WriteLine("Not a valid option");
@@ -119,13 +123,13 @@ namespace TextBasedGameplay.GameLogic
                 Console.WriteLine("[Press enter to continue]");
                 Console.ReadLine();
 
-                BattleMode(generatedMonster);
+                BattleMode(User, generatedMonster);
             }
         }
         /// <summary>
         /// When the user have been detected by the generated monster the battle begins.
         /// </summary>
-        private void BattleMode(Monster generatedMonster)
+        public void BattleMode(Player User, Monster generatedMonster)
         {
             generatedMonster.HealthPoints = generatedMonster.MaxHealthPoints;
             int totalArmour = User.Armour + User.EquipArmour;
