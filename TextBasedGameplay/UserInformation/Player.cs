@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TextBasedGameplay.Mobs;
 
 namespace TextBasedGameplay.UserInformation
 {
@@ -88,7 +89,7 @@ namespace TextBasedGameplay.UserInformation
             }
             else
             {
-                Console.WriteLine($"Level up!\nYou're now level {Level}!\nYour Damage has increased to {Damage} and {HealthPoints}/{MaxHealthPoints} HP!");
+                Console.WriteLine($"Level up!\nYou're now level {Level}!\nYour base damage has increased to {Damage} and {HealthPoints}/{MaxHealthPoints} HP!");
             }
         }
 

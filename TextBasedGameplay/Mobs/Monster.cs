@@ -8,14 +8,15 @@ namespace TextBasedGameplay.Mobs
     {
         public string Name { get; }
         public int HealthPoints { get; set; }
+        public int MaxHealthPoints { get; set; }
         public int ExperiencePoints { get; set; }
         public int Damage { get; set; }
         public int Gold { get; set; }
-
-        public Monster(string name, int healthPoints, int experiencePoints, int damage, int gold)
+        public Monster(string name, int healthPoints, int maxHealthPoints, int experiencePoints, int damage, int gold)
         {
             Name = name;
             HealthPoints = healthPoints;
+            MaxHealthPoints = maxHealthPoints;
             ExperiencePoints = experiencePoints;
             Damage = damage;
             Gold = gold;
@@ -40,16 +41,23 @@ namespace TextBasedGameplay.Mobs
         public int GiveExperience()
         {
             Random rnd = new Random();
-            int experiencePoints = rnd.Next(-5, 5);
+            int experiencePoints = rnd.Next(-2, 3);
 
             return ExperiencePoints + experiencePoints;
         }
         public int GiveGold()
         {
             Random rnd = new Random();
-            int gold = rnd.Next(-5, 5);
+            int gold = rnd.Next(-1, 2);
 
             return Gold + gold;
+        }
+        public void Boost()
+        {
+            Damage++;
+            Gold++;
+            MaxHealthPoints += 10;
+            ExperiencePoints -= 2;
         }
     }
 }

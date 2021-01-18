@@ -9,7 +9,7 @@ namespace TextBasedGameplay.Mobs
         public string Sound { get; }
         public string Habitat { get; }
 
-        public Water(string name, int healthPoints, int experiencePoints, int damage, string sound, string habitat, int gold) : base(name, healthPoints, experiencePoints, damage, gold)
+        public Water(string name, int healthPoints, int maxHealthPoints, int experiencePoints, int damage, string sound, string habitat, int gold) : base(name, healthPoints, maxHealthPoints, experiencePoints, damage, gold)
         {
             Sound = sound;
             Habitat = habitat;

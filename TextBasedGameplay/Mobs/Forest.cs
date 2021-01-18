@@ -9,7 +9,7 @@ namespace TextBasedGameplay.Mobs
         public string Movement { get; }
         public string Appearence { get; }
 
-        public Forest(string name, int healthPoints, int experiencePoints, int damage, string movement, string appearence, int gold) : base (name, healthPoints, experiencePoints, damage, gold)
+        public Forest(string name, int healthPoints, int maxHealthPoints, int experiencePoints, int damage, string movement, string appearence, int gold) : base (name, healthPoints, maxHealthPoints, experiencePoints, damage, gold)
         {
             Movement = movement;
             Appearence = appearence;

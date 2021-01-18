@@ -10,8 +10,8 @@ namespace TextBasedGameplay.GameLogic
 {
     class GamePlay
     {
-        private static Player User = new Player();
-        private static List<Monster> listOfMonsters = new List<Monster>();
+        private Player User = new Player();
+        private List<Monster> listOfMonsters = new List<Monster>();
 
         public void Run()
         {
@@ -103,8 +103,8 @@ namespace TextBasedGameplay.GameLogic
             }
             else
             {
-                int r = rnd.Next(listOfMonsters.Count());
-                var generatedMonster = listOfMonsters[r];
+                int random = rnd.Next(listOfMonsters.Count());
+                var generatedMonster = listOfMonsters[random];
 
                 Console.WriteLine(generatedMonster.Describe());
                 Console.WriteLine("[Press enter to continue]");
@@ -115,7 +115,7 @@ namespace TextBasedGameplay.GameLogic
         }
         private void BattleMode(Monster generatedMonster)
         {
-            generatedMonster.HealthPoints = 50;
+            generatedMonster.HealthPoints = generatedMonster.MaxHealthPoints;
 
             while (true)
             {
@@ -134,6 +134,16 @@ namespace TextBasedGameplay.GameLogic
 
                     User.GainExperience(gainedPoints);
                     User.GetGold(gold);
+
+                    //When user get's LevelUp(), the users experience points is reset to 0 and this boosts Monsters to match user Level
+                    if (User.ExperiencePoints == 0)
+                    {
+                        foreach(Monster monster in listOfMonsters)
+                        {
+                            monster.Boost();
+                        }
+                    }
+
                     break;
                 }
 
@@ -167,14 +177,14 @@ namespace TextBasedGameplay.GameLogic
         {
             listOfMonsters = new List<Monster>
             {
-                new Swamp("Drowner", 50, 50, 5, "gurgelinggurgelinggurg", "swamp", 10),
-                new Swamp("Rottner", 50, 50, 5, "screeching", "swamp", 10),
-                new Water("Hydra", 50, 50, 5, "ROOAAAAAR!", "water", 10),
-                new Water("Siren", 50, 50, 5, "with a witchy laughter", "water", 10),
-                new Forest("Ent", 55, 50, 5, "limping", "gnarly looking", 20),
-                new Forest("Forest Guardian", 50, 50, 6, "slowly", "tall and crooked looking", 20),
-                new Mountain("Minotaur", 55, 50, 6, "lowering it's horns", "stomps it's hooves", 20),
-                new Mountain("Yeti", 55, 50, 6, "claps it's gigantic hands", "grins", 20)
+                new Swamp("Drowner", 50, 50, 50, 5, "gurgelinggurgelinggurg", "swamp", 10),
+                new Swamp("Rottner", 50, 50, 50, 5, "screeching", "swamp", 10),
+                new Water("Hydra", 50, 50, 50, 5, "ROOAAAAAR!", "water", 10),
+                new Water("Siren", 50, 50, 50, 5, "with a witchy laughter", "water", 10),
+                new Forest("Ent", 55, 50, 50, 5, "limping", "gnarly looking", 15),
+                new Forest("Forest Guardian", 50, 50, 50, 6, "slowly", "tall and crooked looking", 15),
+                new Mountain("Minotaur", 55, 50, 50, 6, "lowering it's horns", "stomps it's hooves", 15),
+                new Mountain("Yeti", 55, 50, 50, 6, "claps it's gigantic hands", "grins", 15)
             };
         }
     }
