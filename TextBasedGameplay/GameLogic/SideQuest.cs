@@ -34,7 +34,7 @@ namespace TextBasedGameplay.GameLogic
             Console.WriteLine("We've had trouble with some of our miners, they told me that they found a silver vein up the mountains..");
             Console.WriteLine("They ventured out 5 days ago, haven't seen them since, could you take a look?\"");
             Console.WriteLine();
-            Console.WriteLine($"[Recommended Level for this quest is 5+, you're currently on Level: {user.Level}]");
+            Console.WriteLine($"[Recommended Level for this quest is 6+, you're currently on Level: {user.Level}]");
             
             bool keepRepeating = true;
 
@@ -61,6 +61,9 @@ namespace TextBasedGameplay.GameLogic
             }
             
         }
+        /// <summary>
+        /// Generates random Rare monster from listOfRareMonsters and calls upon BattleMode(). When sequence is finished method return bool false to stop repeating sequence
+        /// </summary>
         private bool GoAdventuring()
         {
             int gold = 50;
@@ -85,6 +88,7 @@ namespace TextBasedGameplay.GameLogic
 
             game.BattleMode(user, generatedMonster);
 
+            //If the user did not die during battle (User health points = 0), the following sequence will run.
             if(user.HealthPoints > 0)
             {
                 Console.WriteLine("You return to the village to talk to the villager and to tell him what happened");
@@ -102,6 +106,9 @@ namespace TextBasedGameplay.GameLogic
             
             return false;
         }
+        /// <summary>
+        /// Only visual, shows an temporary "loading screen". 
+        /// </summary>
         private void Loading()
         {
             Console.WriteLine();
@@ -112,8 +119,12 @@ namespace TextBasedGameplay.GameLogic
             Console.Write(".");
             Thread.Sleep(400);
             Console.Write(".");
+            Thread.Sleep(400);
             Console.WriteLine();
         }
+        /// <summary>
+        /// Method generates Monster that gets added to listOfRareMonsters.
+        /// </summary>
         private void GenerateRareMonsters()
         {
             listOfRareMonsters = new List<Monster>

@@ -105,7 +105,8 @@ namespace TextBasedGameplay.GameLogic
             }
         }
         /// <summary>
-        /// Generates random Monster from listOfMonsters, but there's also a 10% chance of nothing happening.
+        /// Generates random Monster from listOfMonsters, but there's also a 10% chance of nothing happening and a 10% chance to generate
+        /// an Elite through listOfEliteMonsters if the user is level 5+.
         /// </summary>
         private void GoHunting()
         {
@@ -226,13 +227,13 @@ namespace TextBasedGameplay.GameLogic
             Console.WriteLine($"Motherlode! You found a sunken treasure, you've gained 500 gold!\nYou now have {User.Gold} gold");
         }
         /// <summary>
-        /// Super fast play through!
+        /// Super fast play through! This method will boost the player to level 5.
         /// </summary>
         private void GodMode()
         {
             User.Level = 5;
-            User.HealthPoints = 130;
-            User.MaxHealthPoints = 130;
+            User.HealthPoints = 140;
+            User.MaxHealthPoints = 140;
             User.Damage = 20;
             User.Gold += 500;
 
@@ -245,7 +246,7 @@ namespace TextBasedGameplay.GameLogic
             Console.ReadLine();
         }
         /// <summary>
-        /// Generates different monsters and add's them to listOfMonsters
+        /// Generates different monsters and add's them to either listOfMonsters or listOfEliteMonsters
         /// </summary>
         private void GenerateMonsters()
         {

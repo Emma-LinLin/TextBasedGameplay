@@ -108,6 +108,7 @@ namespace TextBasedGameplay.ShopInformation
                     Console.WriteLine("Merchant: \"Your loss lad!\"");
                     break;
                 default:
+                    Console.WriteLine("Not a valid option");
                     break;
             }
         }
